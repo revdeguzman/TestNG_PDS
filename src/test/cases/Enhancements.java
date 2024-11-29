@@ -17,6 +17,9 @@ public class Enhancements extends BaseFiles {
 	@Test(priority = 1)
 	public void AddUser() throws InterruptedException, IOException {
 		
+		//Click User Module
+		driver.findElement(By.xpath("//*[@id=\"main-menu\"]/li[2]/ul/li[3]/a")).click();
+		
 		//Add Screenshot
 		Screenshot screenshot = new Screenshot();
 		String folderPath = System.getProperty("user.dir") + "\\Screenshots\\";
@@ -24,11 +27,8 @@ public class Enhancements extends BaseFiles {
 		//Wait for Elements
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		
-		//Click User Module
-		driver.findElement(By.xpath("//*[@id=\"main-menu\"]/li[2]/ul/li[3]/a")).click();
-		
 		//Wait for the Element to Load
-		WebElement usersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/li[2]/ul/li[3]/ul/li[1]/a")));
+		WebElement usersLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='index.php?menu=userlist']/span[text()='Users']")));
 		
 		//Click the Element
 		usersLink.click();
@@ -97,6 +97,9 @@ public class Enhancements extends BaseFiles {
 		
 		//Webmain Domain Field
 		driver.findElement(By.name("webmaildomain")).sendKeys("Test");
+		
+		//Screenshot
+		screenshot.FullPageScreenShot(folderPath);
 		
 		//Save Button
 		driver.findElement(By.name("save")).click();
