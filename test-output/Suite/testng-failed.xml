@@ -3,13 +3,15 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="test.cases.Enhancements">
+      <class name="test.cases.TC001">
         <methods>
+          <include name="Logout"/>
           <include name="startBrowser"/>
+          <include name="reloginUser"/>
           <include name="AddUser"/>
           <include name="closeBrowser"/>
         </methods>
-      </class> <!-- test.cases.Enhancements -->
+      </class> <!-- test.cases.TC001 -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

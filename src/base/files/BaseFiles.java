@@ -7,20 +7,19 @@ import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseFiles {
 	
 	public static WebDriver driver;
 	public static Properties prop = new Properties();
+	public static Properties login = new Properties();
+	public static Properties tc001 = new Properties();
 	
 	@BeforeTest
 	public void startBrowser() throws IOException, InterruptedException {
@@ -29,9 +28,13 @@ public class BaseFiles {
 			
 			//Create new object that locate properties file
 			FileReader file1 = new FileReader(System.getProperty("user.dir") + "\\src\\resources\\config\\config.properties");
+			FileReader file2 = new FileReader(System.getProperty("user.dir") + "\\src\\resources\\config\\credentials.properties");
+			FileReader file3 = new FileReader(System.getProperty("user.dir") + "\\src\\resources\\config\\TC001.properties");
 			
 			//Read Files
 			prop.load(file1);
+			login.load(file2);
+			tc001.load(file3);
 						
 			//Set up Chrome Driver
 			WebDriverManager.chromedriver().setup();
@@ -55,10 +58,10 @@ public class BaseFiles {
 			driver.findElement(By.xpath("//*[@id=\"proceed-link\"]")).click();
 			
 			//Username Field
-			driver.findElement(By.name("input_user")).sendKeys("qc_pds");
+			driver.findElement(By.name("input_user")).sendKeys(login.getProperty("username"));
 			
 			//Password Field
-			driver.findElement(By.name("input_pass")).sendKeys("P@ssw0rd123");
+			driver.findElement(By.name("input_pass")).sendKeys(login.getProperty("password"));
 			
 			//Submit Button
 			driver.findElement(By.name("submit_login")).click();
@@ -80,8 +83,6 @@ public class BaseFiles {
 		
 		//Click Logout
 		driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/span[1]/ul/li/ul/li[3]/a")).click();
-		
-		Thread.sleep(5000);
 
 		//Close Browser
 		driver.close();

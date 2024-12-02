@@ -24,8 +24,8 @@ public class Screenshot extends BaseFiles {
                 .takeScreenshot(driver);
         
         // Save the screenshot
-        File screenshotFile = new File(folderPath + "\\" + formattedDate + ".png");
-        ImageIO.write(fullPage.getImage(), "PNG", screenshotFile);
+        File screenshotFile = new File(folderPath + "\\" + formattedDate + ".jpeg");
+        ImageIO.write(fullPage.getImage(), "JPEG", screenshotFile);
 
         System.out.println("Screenshot saved as: " + screenshotFile.getAbsolutePath());
         
